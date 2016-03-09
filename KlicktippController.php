@@ -14,7 +14,7 @@ class KlicktippController extends Controller {
    */
   public function validateEmail($email)
   {
-    $validator = \Validator::make($email, ['email' => 'required|email'], ['email.email' => 'Das ist kein Email Adresse']);
+    $validator = \Validator::make($email, ['email' => 'required|email'], ['email.email' => 'Das ist keine Email Adresse']);
 
     if ($validator->passes()) { return true; }
     return false;
@@ -31,7 +31,12 @@ class KlicktippController extends Controller {
     return checkdnsrr($domain, $record);
   }
 
-
+  /**
+   * @param $email
+   * @param $subject
+   * @param $emailklicktipp
+   * @return bool
+   */
   public function sendEmail($email,$subject,$emailklicktipp)
   {
     if($this->validateEmail(array('email' => $email))){
